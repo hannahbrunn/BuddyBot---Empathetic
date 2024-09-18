@@ -60,3 +60,20 @@ body {
     border-radius: 5px;
     cursor: pointer;
   }
+
+  /* Customize the input box */
+.name-input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.name-input:focus {
+  border-color: #0084ff;
+  box-shadow: 0 0 8px rgba(0, 132, 255, 0.5);
+}

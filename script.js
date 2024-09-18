@@ -88,7 +88,6 @@ function askUserName() {
   buttons.innerHTML = nameInputHtml;
 }
 
-// Function to save the user's name and move to the next question
 function saveUserName() {
   const nameInput = document.getElementById('userNameInput');
   userName = nameInput.value;
@@ -98,6 +97,10 @@ function saveUserName() {
     conversationFlow[1].question = `Nice to meet you, ${userName}! How are you today?`;
     conversationFlow[2].question = `${userName}, what’s your favorite hobby?`;
 
+    // Remove the input box and submit button
+    const buttons = document.getElementById('buttons');
+    buttons.innerHTML = '';  // Clear the buttons container
+
     // Proceed with the next question
     currentStepIndex++;
     currentOptions = conversationFlow[currentStepIndex].options;
@@ -106,6 +109,7 @@ function saveUserName() {
     alert('Please enter your name.');
   }
 }
+
 
 // Function to show a question and its options
 function showQuestionAndOptions() {
