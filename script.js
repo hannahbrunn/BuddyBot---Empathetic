@@ -1,6 +1,6 @@
 let currentStepIndex = 0;  // Track which question in the flow we're on
 let currentOptions = {};  // Store current options
-let userName = '';  // Variable to store user's name
+let userName = '';  // Global variable to store user's name
 
 // Define conversation flow with nested structure
 const conversationFlow = [
@@ -9,11 +9,11 @@ const conversationFlow = [
     options: {}  // This will be dynamically handled since we're just asking for the name
   },
   {
-    question: `Nice to meet you, ${userName}! How are you today?`,  // Placeholder for personalized message
+    question: "",  // Placeholder for personalized message
     options: {
       "Good": {
         response: [
-          `Great to hear that you're doing well, ${userName}!`,
+          `Great to hear that you're doing well!`,
           "What did you do today?",
           "Anything exciting?"
         ],
@@ -26,12 +26,11 @@ const conversationFlow = [
             options: {
               "Running": {
                 response: [
-                  "Running is fantastic!",
-                  "How often do you run?"
+                  "Running is fantastic! How often do you run?"
                 ],
                 options: {
                   "Every day": {
-                    response: [`That's impressive, ${userName}! Keep up the great work!`]
+                    response: ["That's impressive! Keep up the great work!"]
                   },
                   "Few times a week": {
                     response: ["That's a good frequency. Running regularly keeps you fit!"]
@@ -41,12 +40,12 @@ const conversationFlow = [
             }
           },
           "Relax": {
-            response: [`Relaxing is important! What did you do to relax, ${userName}?`]
+            response: ["Relaxing is important! What did you do to relax?"]
           }
         }
       },
       "Bad": {
-        response: [`I'm sorry to hear that, ${userName}. Is there anything I can do to help?`]
+        response: [`I'm sorry to hear that. Is there anything I can do to help?`]
       },
       "Not Sure": {
         response: ["That's okay. Take your time."]
@@ -88,14 +87,14 @@ function askUserName() {
   buttons.innerHTML = nameInputHtml;
 }
 
+// Function to save the user's name and update the conversation flow
 function saveUserName() {
   const nameInput = document.getElementById('userNameInput');
-  userName = nameInput.value;
+  userName = nameInput.value.trim();  // Trim any extra spaces
 
   if (userName) {
     // Update the next question to include the user's name
-    conversationFlow[1].question = `Nice to meet you, ${userName}! How are you today?`;
-    conversationFlow[2].question = `${userName}, what’s your favorite hobby?`;
+    updateConversationFlow();
 
     // Remove the input box and submit button
     const buttons = document.getElementById('buttons');
@@ -110,6 +109,14 @@ function saveUserName() {
   }
 }
 
+// Function to update the conversation flow with the user's name
+function updateConversationFlow() {
+  // Update questions with the user's name
+  conversationFlow[1].question = `Nice to meet you, ${userName}! How are you today?`;
+  conversationFlow[2].question = `${userName}, what’s your favorite hobby?`;
+
+  // No need to update responses with userName in nested options
+}
 
 // Function to show a question and its options
 function showQuestionAndOptions() {
@@ -159,6 +166,7 @@ function respond(userInput) {
         // If no more nested options, move to the next question in the flow
         currentStepIndex++;
         if (currentStepIndex < conversationFlow.length) {
+          updateConversationFlow();  // Ensure questions are updated with the user's name
           currentOptions = conversationFlow[currentStepIndex].options;  // Update to next question's options
           showQuestionAndOptions();  // Show the next question
         } else {
