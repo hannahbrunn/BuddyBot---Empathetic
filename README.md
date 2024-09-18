@@ -5,5 +5,4 @@ Code to add into Qualtrics:
 
 https://buddybot1.netlify.app
 
-'<iframe src="https://example.com/chatbot.html" width="100%" height="600px" style="border:none;"></iframe>'
-
+`<iframe src="https://example.com/chatbot.html" width="100%" height="600px" style="border:none;"></iframe>`
