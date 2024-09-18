@@ -1,11 +1,19 @@
+let currentStepIndex = 0;  // Track which question in the flow we're on
+let currentOptions = {};  // Store current options
+let userName = '';  // Variable to store user's name
+
 // Define conversation flow with nested structure
 const conversationFlow = [
   {
-    question: "Hi, my name is BuddyBot! I am a companionship chatbot. How are you?",
+    question: "Hi, my name is BuddyBot! What's your name?",
+    options: {}  // This will be dynamically handled since we're just asking for the name
+  },
+  {
+    question: `Nice to meet you, ${userName}! How are you today?`,  // Placeholder for personalized message
     options: {
       "Good": {
         response: [
-          "Great to hear that you're doing well!",
+          `Great to hear that you're doing well, ${userName}!`,
           "What did you do today?",
           "Anything exciting?"
         ],
@@ -23,7 +31,7 @@ const conversationFlow = [
                 ],
                 options: {
                   "Every day": {
-                    response: ["That's impressive! Keep up the great work!"]
+                    response: [`That's impressive, ${userName}! Keep up the great work!`]
                   },
                   "Few times a week": {
                     response: ["That's a good frequency. Running regularly keeps you fit!"]
@@ -33,12 +41,12 @@ const conversationFlow = [
             }
           },
           "Relax": {
-            response: ["Relaxing is important! What did you do to relax?"]
+            response: [`Relaxing is important! What did you do to relax, ${userName}?`]
           }
         }
       },
       "Bad": {
-        response: ["I'm sorry to hear that. Is there anything I can do to help?"]
+        response: [`I'm sorry to hear that, ${userName}. Is there anything I can do to help?`]
       },
       "Not Sure": {
         response: ["That's okay. Take your time."]
@@ -46,7 +54,7 @@ const conversationFlow = [
     }
   },
   {
-    question: "What’s your favorite hobby?",
+    question: `${userName}, what’s your favorite hobby?`,  // Personalized question
     options: {
       "Reading": {
         response: ["Reading is wonderful! What type of books do you like?"]
@@ -58,50 +66,45 @@ const conversationFlow = [
   }
 ];
 
-let currentStepIndex = 0;  // Track which question in the flow we're on
-let currentOptions = conversationFlow[currentStepIndex].options;  // Start with first question's options
+// Function to ask for the user's name and move to the next question
+function askUserName() {
+  const conversation = document.getElementById('conversation');
+  const buttons = document.getElementById('buttons');
 
-// Helper function for typing effect
-function typeMessage(element, message, callback) {
-  let index = 0;
-  const interval = setInterval(() => {
-    element.innerHTML += message.charAt(index);
-    index++;
-    if (index === message.length) {
-      clearInterval(interval);
-      if (callback) callback();  // Proceed after message finishes typing
-    }
-  }, 50); // Typing speed (50ms per character)
+  const nameInputHtml = `
+    <div class="message user">
+      <input type="text" id="userNameInput" placeholder="Enter your name" class="name-input">
+    </div>
+    <button class="chat-button" onclick="saveUserName()">Submit</button>
+  `;
+
+  conversation.innerHTML += `
+    <div class="message chatbot">
+      <img src="chatbot-profile.jpg" alt="Chatbot" class="chatbot-img">
+      <div class="bubble">Hi, my name is BuddyBot! What's your name?</div>
+    </div>
+  `;
+  
+  buttons.innerHTML = nameInputHtml;
 }
 
-// Function to show multiple messages in sequence with typing animation
-function showMessagesSequentially(messages, callback) {
-  const conversation = document.getElementById('conversation');
-  
-  let index = 0;
+// Function to save the user's name and move to the next question
+function saveUserName() {
+  const nameInput = document.getElementById('userNameInput');
+  userName = nameInput.value;
 
-  function showNextMessage() {
-    if (index < messages.length) {
-      // Create new bubble for the message part
-      const bubble = document.createElement('div');
-      bubble.classList.add('message', 'chatbot');
-      bubble.innerHTML = `<img src="chatbot-profile.jpg" alt="Chatbot" class="chatbot-img"><div class="bubble"></div>`;
-      conversation.appendChild(bubble);
+  if (userName) {
+    // Update the next question to include the user's name
+    conversationFlow[1].question = `Nice to meet you, ${userName}! How are you today?`;
+    conversationFlow[2].question = `${userName}, what’s your favorite hobby?`;
 
-      // Get the bubble div and type the message into it
-      const bubbleText = bubble.querySelector('.bubble');
-      
-      // Typing effect
-      typeMessage(bubbleText, messages[index], () => {
-        index++;
-        setTimeout(showNextMessage, 500); // Delay before the next message
-      });
-    } else if (callback) {
-      callback(); // When all messages are done, show buttons
-    }
+    // Proceed with the next question
+    currentStepIndex++;
+    currentOptions = conversationFlow[currentStepIndex].options;
+    showQuestionAndOptions();
+  } else {
+    alert('Please enter your name.');
   }
-
-  showNextMessage();
 }
 
 // Function to show a question and its options
@@ -112,10 +115,12 @@ function showQuestionAndOptions() {
 
   // Display the question
   showMessagesSequentially([currentStep.question], () => {
-    // Once the question is shown, show the options as buttons
-    buttons.innerHTML = Object.keys(currentStep.options).map(option =>
-      `<button class="chat-button" onclick="respond('${option}')">${option}</button>`
-    ).join('');
+    // Once the question is shown, show the options as buttons if available
+    if (Object.keys(currentStep.options).length > 0) {
+      buttons.innerHTML = Object.keys(currentStep.options).map(option =>
+        `<button class="chat-button" onclick="respond('${option}')">${option}</button>`
+      ).join('');
+    }
   });
 }
 
@@ -161,11 +166,54 @@ function respond(userInput) {
   }
 }
 
+// Function to show multiple messages in sequence with typing animation
+function showMessagesSequentially(messages, callback) {
+  const conversation = document.getElementById('conversation');
+  
+  let index = 0;
+
+  function showNextMessage() {
+    if (index < messages.length) {
+      // Create new bubble for the message part
+      const bubble = document.createElement('div');
+      bubble.classList.add('message', 'chatbot');
+      bubble.innerHTML = `<img src="chatbot-profile.jpg" alt="Chatbot" class="chatbot-img"><div class="bubble"></div>`;
+      conversation.appendChild(bubble);
+
+      // Get the bubble div and type the message into it
+      const bubbleText = bubble.querySelector('.bubble');
+      
+      // Typing effect
+      typeMessage(bubbleText, messages[index], () => {
+        index++;
+        setTimeout(showNextMessage, 500); // Delay before the next message
+      });
+    } else if (callback) {
+      callback(); // When all messages are done, show buttons
+    }
+  }
+
+  showNextMessage();
+}
+
+// Helper function for typing effect
+function typeMessage(element, message, callback) {
+  let index = 0;
+  const interval = setInterval(() => {
+    element.innerHTML += message.charAt(index);
+    index++;
+    if (index === message.length) {
+      clearInterval(interval);
+      if (callback) callback();  // Proceed after message finishes typing
+    }
+  }, 50); // Typing speed (50ms per character)
+}
+
 // Function to initialize chat on page load
 function initializeChat() {
   currentStepIndex = 0;  // Reset to first question
-  currentOptions = conversationFlow[currentStepIndex].options;  // Reset options to first question's options
-  showQuestionAndOptions();  // Start with the first question
+  currentOptions = {};  // Reset options
+  askUserName();  // Start by asking for the user's name
 }
 
 // Initialize chat on page load
