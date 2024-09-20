@@ -96,6 +96,14 @@ function saveUserName() {
     // Update the next question to include the user's name
     updateConversationFlow();
 
+    // Add the user's name as a message in the conversation
+    const conversation = document.getElementById('conversation');
+    conversation.innerHTML += `
+      <div class="message user">
+        <div class="bubble">${userName}</div>
+      </div>
+    `;
+
     // Remove the input box and submit button
     const buttons = document.getElementById('buttons');
     buttons.innerHTML = '';  // Clear the buttons container
@@ -108,6 +116,7 @@ function saveUserName() {
     alert('Please enter your name.');
   }
 }
+
 
 // Function to update the conversation flow with the user's name
 function updateConversationFlow() {
