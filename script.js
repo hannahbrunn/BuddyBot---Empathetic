@@ -2,68 +2,54 @@ let currentStepIndex = 0;  // Track which question in the flow we're on
 let currentOptions = {};  // Store current options
 let userName = '';  // Global variable to store user's name
 
-// Define conversation flow with nested structure
-const conversationFlow = [
+// Define conversation flow
+const ConversationFlow = [
   {
-    question: "Hi, my name is BuddyBot! What's your name?",
-    options: {}  // This will be dynamically handled since we're just asking for the name
+    question: "Hi, my name is BuddyBot. What is your name?",
+    options: {}  // Name dynamically handled
   },
   {
-    question: "",  // Placeholder for personalized message
+    question: "",  // Placeholder for personalized question
     options: {
-      "Good": {
-        response: [
-          `Great to hear that you're doing well!`,
-          "What did you do today?",
-          "Anything exciting?"
-        ],
-        options: {
-          "Exercise": {
-            response: [
-              "That's a great way to stay healthy!",
-              "What kind of exercise do you do?"
-            ],
-            options: {
-              "Running": {
-                response: [
-                  "Running is fantastic! How often do you run?"
-                ],
-                options: {
-                  "Every day": {
-                    response: ["That's impressive! Keep up the great work!"]
-                  },
-                  "Few times a week": {
-                    response: ["That's a good frequency. Running regularly keeps you fit!"]
-                  }
-                }
-              }
-            }
-          },
-          "Relax": {
-            response: ["Relaxing is important! What did you do to relax?"]
-          }
-        }
-      },
-      "Bad": {
-        response: [`I'm sorry to hear that. Is there anything I can do to help?`]
-      },
-      "Not Sure": {
-        response: ["That's okay. Take your time."]
-      }
+      "Great": { response: ["That is wonderful!",
+                            "It's always nice when things go smoothly. I'm really happy for you!"] },
+      "Good": { response: ["That is wonderful!",
+                          "It's always nice when things go smoothly. I'm really happy for you!"] },
+      "Okay": { response: ["An okay day is still progress.",
+                          "I hope that you found something good in it."] },
+      "Not good": { response: ["I'm very sorry to hear that.",
+                               "Off days happen, but I'm here for you if you need anything."] }
     }
   },
   {
-    question: `${userName}, what’s your favorite hobby?`,  // Personalized question
+    question: "",  // Placeholder for activities question
     options: {
-      "Reading": {
-        response: ["Reading is wonderful! What type of books do you like?"]
-      },
-      "Gaming": {
-        response: ["Gaming is fun! What games do you play?"]
-      }
+      "Sports or outdoor activities": { response: ["That seems like a nice activity.",
+                                                   "Sports are a good way to get fresh air!"] },
+      "Something creative like drawing or music": { response: ["That seems like a nice activity.",
+                                                                "Creativity can be so rewarding!"] },
+      "Entertaining myself (reading, watching movies, gaming)": { response: ["That sounds enjoyable!",
+                                                                             "A good way to relax and unwind."] },
+      "Learning new things or skills": { response: ["That's great!",
+                                                      "Learning new things is always fulfilling!"] }
+    }
+  },
+  {
+    question: "",  // Placeholder for trip planning question
+    options: {
+      "Definitely more spontaneous!": { response: ["That sounds exciting!",
+                                                    "Embracing spontaneity can make trips so much more adventurous!"] },
+      "Not really sure": { response: ["That's totally okay!",
+                                      "Sometimes it's hard to choose, and flexibility can be a great strength!"] },
+      "Maybe a little bit of both": { response: ["A mix of both sounds perfect!",
+                                                 "Having plans while staying open to spontaneity gives you the best of both worlds."] },
+      "I need to plan everything": { response: ["That makes sense",
+                                                "Careful planning can bring peace of mind and help everything go smoothly."] }
     }
   }
-];
+ ];
+ 
+ 
 
 // Function to ask for the user's name and move to the next question
 function askUserName() {
@@ -93,9 +79,6 @@ function saveUserName() {
   userName = nameInput.value.trim();  // Trim any extra spaces
 
   if (userName) {
-    // Update the next question to include the user's name
-    updateConversationFlow();
-
     // Add the user's name as a message in the conversation
     const conversation = document.getElementById('conversation');
     conversation.innerHTML += `
@@ -108,28 +91,29 @@ function saveUserName() {
     const buttons = document.getElementById('buttons');
     buttons.innerHTML = '';  // Clear the buttons container
 
+    // Proceed to the next question and update the flow with the user's name
+    updateConversationFlow();
+
     // Proceed with the next question
     currentStepIndex++;
-    currentOptions = conversationFlow[currentStepIndex].options;
+    currentOptions = ConversationFlow[currentStepIndex].options;
     showQuestionAndOptions();
   } else {
     alert('Please enter your name.');
   }
 }
 
-
 // Function to update the conversation flow with the user's name
 function updateConversationFlow() {
   // Update questions with the user's name
-  conversationFlow[1].question = `Nice to meet you, ${userName}! How are you today?`;
-  conversationFlow[2].question = `${userName}, what’s your favorite hobby?`;
-
-  // No need to update responses with userName in nested options
+  ConversationFlow[1].question = `Nice to meet you, ${userName}! How are you today?`;
+  ConversationFlow[2].question = `Do you have any activities you do to enjoy your free time, ${userName}?`;
+  ConversationFlow[3].question = `${userName}, when planning a trip, are you more spontaneous or do you prefer planning?`;
 }
 
 // Function to show a question and its options
 function showQuestionAndOptions() {
-  const currentStep = conversationFlow[currentStepIndex];
+  const currentStep = ConversationFlow[currentStepIndex];
   const conversation = document.getElementById('conversation');
   const buttons = document.getElementById('buttons');
 
@@ -163,8 +147,11 @@ function respond(userInput) {
   buttons.innerHTML = '';
 
   if (userResponse) {
-    // Show the chatbot's response
-    showMessagesSequentially(userResponse.response, () => {
+    // Handle multiple responses for splitting into bubbles
+    const responses = Array.isArray(userResponse.response) ? userResponse.response : [userResponse.response];
+
+    // Show the chatbot's responses in sequence
+    showMessagesSequentially(responses, () => {
       if (userResponse.options) {
         // If there are nested options, update currentOptions and display them
         currentOptions = userResponse.options;
@@ -172,12 +159,11 @@ function respond(userInput) {
           `<button class="chat-button" onclick="respond('${option}')">${option}</button>`
         ).join('');
       } else {
-        // If no more nested options, move to the next question in the flow
+        // Move to the next question in the flow
         currentStepIndex++;
-        if (currentStepIndex < conversationFlow.length) {
-          updateConversationFlow();  // Ensure questions are updated with the user's name
-          currentOptions = conversationFlow[currentStepIndex].options;  // Update to next question's options
-          showQuestionAndOptions();  // Show the next question
+        if (currentStepIndex < ConversationFlow.length) {
+          currentOptions = ConversationFlow[currentStepIndex].options;
+          showQuestionAndOptions();
         } else {
           // End the conversation
           showMessagesSequentially(["Thanks for chatting!"]);
@@ -186,6 +172,7 @@ function respond(userInput) {
     });
   }
 }
+
 
 // Function to show multiple messages in sequence with typing animation
 function showMessagesSequentially(messages, callback) {
