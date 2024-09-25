@@ -2,6 +2,7 @@ let currentStepIndex = 0;  // Track which question in the flow we're on
 let currentOptions = {};  // Store current options
 let userName = '';  // Global variable to store user's name
 let ConversationFlow = []; // Initialize ConversationFlow
+let autoScrollEnabled = true; // Control for auto-scrolling
 
 // Function to load and parse TSV data
 async function loadTSV() {
@@ -92,7 +93,6 @@ function showQuestionAndOptions() {
 }
 
 // Function to respond to user input
-// Function to respond to user input
 function respond(userInput) {
   const conversation = document.getElementById('conversation');
   const buttons = document.getElementById('buttons');
@@ -125,9 +125,6 @@ function respond(userInput) {
               // End the conversation
               showMessagesSequentially(["Thanks for chatting!"]);
           }
-
-          // Scroll to the bottom after the responses
-          scrollToBottom();
       });
   }
 }
@@ -172,36 +169,38 @@ function typeMessage(element, message, callback) {
     if (index === message.length) {
       clearInterval(interval);
       if (callback) callback();  // Proceed after message finishes typing
+      scrollToBottom(); // Scroll down when a message is fully displayed
     }
   }, 50); // Typing speed (50ms per character)
 }
 
+// Function to scroll the entire window to the bottom
+function scrollToBottom() {
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: 'smooth' // Smooth scroll effect
+  });
+}
+
+// Add an event listener to detect user scrolling
+window.addEventListener('scroll', () => {
+  const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
+  autoScrollEnabled = isAtBottom; // Disable auto-scroll if user scrolls up
+});
+
 // Function to initialize chat on page load
 function initializeChat() {
   currentStepIndex = 0;  // Reset to first question
   currentOptions = {};  // Reset options
   askUserName();  // Start by asking for the user's name
-}
 
-// Function to smoothly scroll the entire window down every second
-function autoScroll() {
-  // Use setInterval to scroll down every second
+  // Start auto-scrolling every second
   setInterval(() => {
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: 'smooth' // Smooth scroll effect
-    });
-  }, 10); // Change the time interval if needed
-}
-
-// Function to initialize chat on page load
-function initializeChat() {
-  currentStepIndex = 0;  // Reset to first question
-  currentOptions = {};  // Reset options
-  askUserName();  // Start by asking for the user's name
-  autoScroll(); // Start auto-scrolling
+    if (autoScrollEnabled) {
+      scrollToBottom(); // Scroll to bottom only if enabled
+    }
+  }, 100); // Change the interval as needed
 }
 
 // Initialize chat on page load
 window.onload = initializeChat;
-
