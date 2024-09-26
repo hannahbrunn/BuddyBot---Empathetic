@@ -6,7 +6,7 @@ let autoScrollEnabled = true; // Control for auto-scrolling
 
 // Load the questions from the CSV file
 async function loadQuestions() {
-  const response = await fetch("empathic_responses.csv"); // Update with your CSV file path
+  const response = await fetch("neutral_responses.csv"); // Update with your CSV file path
   const text = await response.text();
   
   const rows = text.split('\n').map(row => row.split(';')); // Change delimiter to your preferred one
@@ -127,12 +127,16 @@ function respond(userInput) {
     showMessagesSequentially(responses, () => {
       // Move to the next question in the flow
       currentStepIndex++;
+      
       if (currentStepIndex < ConversationFlow.length) {
         currentOptions = ConversationFlow[currentStepIndex].options;
         showQuestionAndOptions();
       } else {
-        // End the conversation
-        showMessagesSequentially(["Thanks for chatting!"]);
+        // **End the conversation** by showing "Thanks for chatting!"
+        showMessagesSequentially(["Thanks for chatting!"], () => {
+          // Optionally, you can add additional actions here (e.g., resetting the conversation, hiding buttons)
+          buttons.innerHTML = '';  // Clear buttons if needed
+        });
       }
     });
   }
@@ -217,7 +221,7 @@ window.addEventListener('scroll', checkScrollPosition);
 function autoScroll() {
   setInterval(() => {
     scrollToBottom();
-  }, 1000); // Adjust the interval time as needed (e.g., 1000ms = 1 second)
+  }, 100); // Adjust the interval time as needed (e.g., 1000ms = 1 second)
 }
 
 // Function to initialize chat on page load
