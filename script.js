@@ -11,7 +11,6 @@ async function loadQuestions() {
   
   const rows = text.split('\n').map(row => row.split(';')); // Change delimiter to your preferred one
   
-  // Add number question you want the conversation to start (0 = the first question)
   for (let index = 0; index < rows.length; index++) {
     const row = rows[index];
     const question = row[0].replace(/{Username}/g, userName); // Replace placeholder
@@ -34,6 +33,7 @@ async function loadQuestions() {
   }
 }
 
+// Testing paths (Separate from actual chat flow)
 async function testAllPaths() {
   await loadQuestions(); // Ensure questions are loaded
   
@@ -44,7 +44,6 @@ async function testAllPaths() {
     const currentStep = ConversationFlow[currentStepIndex];
     const options = currentStep.options;
 
-    // Check if there are any options available for this question
     if (Object.keys(options).length === 0) {
       console.error(`No options available for question at index ${currentStepIndex}: "${currentStep.question}"`);
       break;
@@ -57,8 +56,7 @@ async function testAllPaths() {
 
       const response = options[option].response;
 
-      // Log each response
-      response.forEach((res, i) => {
+      response.forEach((res) => {
         console.log(`Chatbot responds: "${res}"`);
       });
 
@@ -75,11 +73,7 @@ async function testAllPaths() {
   }
 }
 
-// Run the function to check all of the paths
-window.onload = testAllPaths();
-
-// Ask the user for their name and move to the next question
-
+// Ask for the username
 function askUserName() {
   const conversation = document.getElementById('conversation');
   const buttons = document.getElementById('buttons');
@@ -94,20 +88,30 @@ function askUserName() {
   showMessagesSequentially(introductionMessages, () => {
     const nameInputHtml = `
       <div class="message user">
-        <input type="text" id="userNameInput" placeholder="Enter your name" class="name-input">
+        <input type="text" id="userNameInput" placeholder="Enter your name" class="name-input" onkeydown="checkEnter(event)">
       </div>
       <button class="chat-button" onclick="saveUserName()">Submit</button>
     `;
     buttons.innerHTML = nameInputHtml;
   });
 }
-// Save the user's name and update the conversation flow
+
+function checkEnter(event) {
+  if (event.key === 'Enter') {
+    saveUserName(); // Call the saveUserName function when Enter is pressed
+  }
+}
+
+
+
+
+
+// Save the username and continue with the flow
 function saveUserName() {
   const nameInput = document.getElementById('userNameInput');
-  userName = nameInput.value.trim();  // Trim any extra spaces
+  userName = nameInput.value.trim();
 
   if (userName) {
-    // Add the user's name as a message in the conversation
     const conversation = document.getElementById('conversation');
     conversation.innerHTML += `
       <div class="message user">
@@ -115,13 +119,11 @@ function saveUserName() {
       </div>
     `;
 
-    // Remove the input box and submit button
     const buttons = document.getElementById('buttons');
-    buttons.innerHTML = '';  // Clear the buttons container
+    buttons.innerHTML = '';  // Clear the buttons
 
-    // Load the question data and proceed to the first question
+    // After saving the name, load the questions and start the conversation
     loadQuestions().then(() => {
-      // Proceed with the first question
       currentOptions = ConversationFlow[currentStepIndex].options;
       showQuestionAndOptions();
     });
@@ -180,7 +182,6 @@ function respond(userInput) {
       } else {
         // **End the conversation** by showing "Thanks for chatting!"
         showMessagesSequentially(["Thanks for chatting!"], () => {
-          // Optionally, you can add additional actions here (e.g., resetting the conversation, hiding buttons)
           buttons.innerHTML = '';  // Clear buttons if needed
         });
       }
@@ -196,23 +197,20 @@ function showMessagesSequentially(messages, callback) {
 
   function showNextMessage() {
     if (index < messages.length) {
-      // Create new bubble for the message part
       const bubble = document.createElement('div');
       bubble.classList.add('message', 'chatbot');
       bubble.innerHTML = `<img src="chatbot-profile.jpg" alt="Chatbot" class="chatbot-img"><div class="bubble"></div>`;
       conversation.appendChild(bubble);
 
-      // Get the bubble div and type the message into it
       const bubbleText = bubble.querySelector('.bubble');
       
       // Typing effect
       typeMessage(bubbleText, messages[index], () => {
         index++;
-        // Delay before the next message only after the current one finishes typing
-        setTimeout(showNextMessage, 500); // Optional: Adjust delay time as needed
+        setTimeout(showNextMessage, 500);
       });
     } else if (callback) {
-      callback(); // When all messages are done, show buttons
+      callback();
     }
   }
 
@@ -227,8 +225,8 @@ function typeMessage(element, message, callback) {
     index++;
     if (index === message.length) {
       clearInterval(interval);
-      if (callback) callback();  // Proceed after message finishes typing
-      scrollToBottom(); // Scroll down when a message is fully displayed
+      if (callback) callback();
+      scrollToBottom();
     }
   }, 50); // Typing speed (50ms per character)
 }
@@ -238,7 +236,7 @@ function scrollToBottom() {
   if (autoScrollEnabled) {
     window.scrollTo({
       top: document.body.scrollHeight,
-      behavior: 'smooth' // Smooth scroll effect
+      behavior: 'smooth'
     });
   }
 }
@@ -247,37 +245,28 @@ function scrollToBottom() {
 function checkScrollPosition() {
   const chatBox = document.getElementById('conversation');
   
-  // Check if the user is at the bottom of the chat container
   const isChatBoxAtBottom = chatBox.scrollHeight - chatBox.clientHeight <= chatBox.scrollTop + 1;
-
-  // Check if the user is at the bottom of the window
   const isWindowAtBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1;
   
-  // Auto-scroll will be disabled if the user scrolls up in either the chatbox or window
   autoScrollEnabled = isChatBoxAtBottom && isWindowAtBottom;
 }
 
-// Add event listener for the chat container scrolling
+// Add event listeners for scroll checking
 document.getElementById('conversation').addEventListener('scroll', checkScrollPosition);
-
-// Add event listener for window scrolling
 window.addEventListener('scroll', checkScrollPosition);
-
-// Function to start auto-scrolling the window to the bottom every second
-function autoScroll() {
-  setInterval(() => {
-    scrollToBottom();
-  }, 100); // Adjust the interval time as needed (e.g., 1000ms = 1 second)
-}
 
 // Function to initialize chat on page load
 async function initializeChat() {
-  currentStepIndex = 0;  // Reset to first question
-  currentOptions = {};  // Reset options
   askUserName();  // Start by asking for the user's name
-  saveUserName() //Save the users name and add it to the questions
-  await loadQuestions(); // Ensure questions are loaded
+  //runTestPaths(); // Call this to test paths as well
+}
+
+
+
+// Run testAllPaths separately if needed
+function runTestPaths() {
+  testAllPaths();  // You can run this manually to check paths
 }
 
 // Initialize chat on page load
-window.onload = initializeChat;
+window.onload = initializeChat
