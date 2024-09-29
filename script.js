@@ -275,11 +275,10 @@ async function initializeChat() {
   currentStepIndex = 0;  // Reset to first question
   currentOptions = {};  // Reset options
   askUserName();  // Start by asking for the user's name
+  saveUserName() //Save the users name and add it to the questions
   await loadQuestions(); // Ensure questions are loaded
   testAllPaths(); // Trigger the path-testing function
 }
 
 // Initialize chat on page load
 window.onload = initializeChat;
-
-
