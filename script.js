@@ -75,8 +75,8 @@ async function testAllPaths() {
   }
 }
 
-// Call the test function on page load or after questions are loaded
-window.onload = testAllPaths;
+// Run the function to check all of the paths
+window.onload = testAllPaths();
 
 // Ask the user for their name and move to the next question
 
@@ -277,7 +277,6 @@ async function initializeChat() {
   askUserName();  // Start by asking for the user's name
   saveUserName() //Save the users name and add it to the questions
   await loadQuestions(); // Ensure questions are loaded
-  testAllPaths(); // Trigger the path-testing function
 }
 
 // Initialize chat on page load
