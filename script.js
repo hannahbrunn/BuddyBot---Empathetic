@@ -10,51 +10,97 @@ async function loadQuestions() {
   const text = await response.text();
   
   const rows = text.split('\n').map(row => row.split(';')); // Change delimiter to your preferred one
-  rows.forEach((row, index) => {
-    if (index > 0) { // Skip header row
-      const question = row[0].replace(/{Username}/g, userName); // Replace placeholder
-      const options = {};
-      let hasResponse = false; // Flag to check if there are responses
-      
-      for (let i = 1; i < row.length; i += 2) {
-        if (row[i] && row[i + 1]) {
-          options[row[i]] = { response: [row[i + 1]] }; // Each option and response
-          hasResponse = true; // Mark as having a response
-        }
-      }
-
-      if (hasResponse) {
-        ConversationFlow.push({ question, options });
-      } else {
-        console.error(`Question "${question}" does not have any responses.`);
-        ConversationFlow.push({ question, options: { "No response available": { response: ["I'm sorry, but there's no response available."] } } });
+  
+  // Add number question you want the conversation to start (0 = the first question)
+  for (let index = 0; index < rows.length; index++) {
+    const row = rows[index];
+    const question = row[0].replace(/{Username}/g, userName); // Replace placeholder
+    const options = {};
+    let hasResponse = false; // Flag to check if there are responses
+    
+    for (let i = 1; i < row.length; i += 2) {
+      if (row[i] && row[i + 1]) {
+        options[row[i]] = { response: [row[i + 1]] }; // Each option and response
+        hasResponse = true; // Mark as having a response
       }
     }
-  });
+
+    if (hasResponse) {
+      ConversationFlow.push({ question, options });
+    } else {
+      console.error(`Question "${question}" does not have any responses.`);
+      ConversationFlow.push({ question, options: { "No response available": { response: ["I'm sorry, but there's no response available."] } } });
+    }
+  }
 }
 
+async function testAllPaths() {
+  await loadQuestions(); // Ensure questions are loaded
+  
+  let currentStepIndex = 0;
+  let pathsExplored = 0;
+
+  while (currentStepIndex < ConversationFlow.length) {
+    const currentStep = ConversationFlow[currentStepIndex];
+    const options = currentStep.options;
+
+    // Check if there are any options available for this question
+    if (Object.keys(options).length === 0) {
+      console.error(`No options available for question at index ${currentStepIndex}: "${currentStep.question}"`);
+      break;
+    }
+
+    // Simulate choosing each option
+    for (const option in options) {
+      console.log(`Question: "${currentStep.question}"`);
+      console.log(`User selects: "${option}"`);
+
+      const response = options[option].response;
+
+      // Log each response
+      response.forEach((res, i) => {
+        console.log(`Chatbot responds: "${res}"`);
+      });
+
+      pathsExplored++;
+    }
+
+    currentStepIndex++; // Move to the next question
+  }
+
+  if (currentStepIndex === ConversationFlow.length) {
+    console.log(`All paths successfully explored. Total paths explored: ${pathsExplored}`);
+  } else {
+    console.error(`Stopped at question index: ${currentStepIndex}. Something went wrong.`);
+  }
+}
+
+// Call the test function on page load or after questions are loaded
+window.onload = testAllPaths;
+
 // Ask the user for their name and move to the next question
+
 function askUserName() {
   const conversation = document.getElementById('conversation');
   const buttons = document.getElementById('buttons');
 
-  const nameInputHtml = `
-    <div class="message user">
-      <input type="text" id="userNameInput" placeholder="Enter your name" class="name-input">
-    </div>
-    <button class="chat-button" onclick="saveUserName()">Submit</button>
-  `;
+  const introductionMessages = [
+    "Hi, my name is BuddyBot.",
+    "I will ask questions to get to know you better.",
+    "What would you like me to call you?"
+  ];
 
-  conversation.innerHTML += `
-    <div class="message chatbot">
-      <img src="chatbot-profile.jpg" alt="Chatbot" class="chatbot-img">
-      <div class="bubble">Hi, my name is BuddyBot! What's your name?</div>
-    </div>
-  `;
-  
-  buttons.innerHTML = nameInputHtml;
+  // Show the introduction messages sequentially
+  showMessagesSequentially(introductionMessages, () => {
+    const nameInputHtml = `
+      <div class="message user">
+        <input type="text" id="userNameInput" placeholder="Enter your name" class="name-input">
+      </div>
+      <button class="chat-button" onclick="saveUserName()">Submit</button>
+    `;
+    buttons.innerHTML = nameInputHtml;
+  });
 }
-
 // Save the user's name and update the conversation flow
 function saveUserName() {
   const nameInput = document.getElementById('userNameInput');
@@ -225,11 +271,12 @@ function autoScroll() {
 }
 
 // Function to initialize chat on page load
-function initializeChat() {
+async function initializeChat() {
   currentStepIndex = 0;  // Reset to first question
   currentOptions = {};  // Reset options
   askUserName();  // Start by asking for the user's name
-  autoScroll(); // Start auto-scrolling
+  await loadQuestions(); // Ensure questions are loaded
+  testAllPaths(); // Trigger the path-testing function
 }
 
 // Initialize chat on page load
