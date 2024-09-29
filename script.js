@@ -281,3 +281,5 @@ async function initializeChat() {
 
 // Initialize chat on page load
 window.onload = initializeChat;
+
+
