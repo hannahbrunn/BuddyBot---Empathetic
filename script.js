@@ -226,7 +226,7 @@ function showMessagesSequentially(messages, callback) {
 // Helper function for typing effect
 function typeMessage(element, message, callback) {
     let index = 0;
-    const typingInterval = -1; // Typing speed (50ms per character)
+    const typingInterval = 50; // Typing speed (50ms per character)
 
     const interval = setInterval(() => {
         element.innerHTML += message.charAt(index);
