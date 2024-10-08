@@ -82,7 +82,8 @@ function askUserName() {
     const introductionMessages = [
         "Hi, my name is BuddyBot.",
         "I will ask questions to get to know you better.",
-        "What would you like me to call you?"
+        "What would you like me to call you?",
+        "Please enter your nickname and not your real name."
     ];
 
     // Show the introduction messages sequentially
