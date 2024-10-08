@@ -183,7 +183,7 @@ function respond(userInput) {
               showQuestionAndOptions();
           } else {
               // **End the conversation** by showing "Thanks for chatting!"
-              showMessagesSequentially(["Thanks for chatting!"], () => {
+              showMessagesSequentially(["Okay, those are all the questions I have. Thanks for chatting!"], () => {
                   buttons.innerHTML = '';  // Clear buttons if needed
               });
           }
@@ -267,5 +267,4 @@ function checkScrollPosition() {
 document.getElementById('conversation').addEventListener('scroll', checkScrollPosition);
 window.addEventListener('scroll', checkScrollPosition);
 
-// Start the conversation by asking for the user's name
-askUserName();
+// Start the conversation 
