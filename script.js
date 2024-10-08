@@ -267,5 +267,4 @@ function checkScrollPosition() {
 document.getElementById('conversation').addEventListener('scroll', checkScrollPosition);
 window.addEventListener('scroll', checkScrollPosition);
 
-// Start the conversation by asking for the user's name
-askUserName();
+// Start the conversation 
