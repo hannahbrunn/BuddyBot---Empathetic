@@ -7,7 +7,7 @@ let scrollIntervalId; // Variable to hold the scrolling interval
 
 // Load the questions from the CSV file
 async function loadQuestions() {
-    const response = await fetch("empathic_responses.csv"); // Update with your CSV file path
+    const response = await fetch("neutral_responses.csv"); // Update with your CSV file path
     const text = await response.text();
 
     const rows = text.split('\n').map(row => row.split(';')); // Change delimiter to your preferred one
