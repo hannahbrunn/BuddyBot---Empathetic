@@ -154,13 +154,12 @@ function respond(userInput) {
 // Function to show multiple messages in sequence with typing animation
 function showMessagesSequentially(messages, callback) {
     const conversation = document.getElementById('conversation');
-
     let index = 0;
 
     function showNextMessage() {
         if (index < messages.length) {
-            const messageParts = splitMessage(messages[index]); // Split the message
-            let partIndex = 0; // Track which part of the message we're on
+            const messageParts = splitMessage(messages[index]);
+            let partIndex = 0;
 
             function showNextPart() {
                 if (partIndex < messageParts.length) {
@@ -172,20 +171,20 @@ function showMessagesSequentially(messages, callback) {
                     const bubbleText = bubble.querySelector('.bubble');
 
                     if (typingEnabled) {
-                        // Typing effect if enabled
+                        // Typing effect with a delay after each part
                         typeMessage(bubbleText, messageParts[partIndex], () => {
                             partIndex++;
-                            showNextPart(); // Show the next part after current part finishes typing
+                            setTimeout(showNextPart, 500); // Delay after each sentence/part
                         });
                     } else {
                         // Display message immediately if typing is disabled
                         bubbleText.innerHTML = messageParts[partIndex];
                         partIndex++;
-                        showNextPart();
+                        setTimeout(showNextPart, 500); // Delay after each sentence/part
                     }
                 } else {
                     index++;
-                    setTimeout(showNextMessage, 500); // Wait before moving to the next message
+                    setTimeout(showNextMessage, 50); // Delay between complete messages
                 }
             }
 
@@ -197,6 +196,8 @@ function showMessagesSequentially(messages, callback) {
 
     showNextMessage();
 }
+
+
 
 // Helper function to split messages into bubbles based on punctuation
 function splitMessage(message) {

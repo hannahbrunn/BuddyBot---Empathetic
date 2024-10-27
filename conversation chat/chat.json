@@ -184,7 +184,7 @@
         "question": "I know for me in the morning I need some kind of caffeine! So, do you enjoy coffee or tea more?",
         "options": {
             "I definitely love coffee.": {
-                "response": "I hear you! Coffee is such a comforting choice, especially during late nights. Speaking of, I feel like the effect of a warm drink really depends on the season.",
+                "response": "I hear you! Coffee is such a comforting choice, especially during early mornings. Speaking of, I feel like the effect of a warm drink really depends on the season.",
                 "nextId": "11"
             },
             "I like them equally.": {
@@ -287,11 +287,11 @@
         "options": {
             "I choose to be alone.": {
                 "response": "I understand; sometimes solitude can provide the space we need to reflect and recharge.",
-                "nextId": "17"
+                "nextId": "18"
             },
             "I choose to talk to others.": {
                 "response": "That's a great approach! Talking things out can really help lighten the load and bring new perspectives.",
-                "nextId": "18"
+                "nextId": "17"
             },
             "I try to stay busy.": {
                 "response": "Staying busy can be a good distraction! It often helps to keep our minds occupied and focused on positive activities.",
