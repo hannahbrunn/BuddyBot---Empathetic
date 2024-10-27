@@ -130,7 +130,7 @@ function respond(userInput) {
                 showQuestionAndOptions();
             } else {
                 // End the conversation by showing "Thanks for chatting!"
-                showMessagesSequentially(["Okay, those are all the questions I have. Thanks for chatting!"], () => {
+                showMessagesSequentially(["Thanks for chatting!"], () => {
                     buttons.innerHTML = '';  // Clear buttons if needed
                 });
             }
