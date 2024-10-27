@@ -346,7 +346,7 @@
         "question": "When changing your focus, do you prefer to engage in calming activities or something more stimulating?",
         "options": {
             "Calming.": {
-                "response": "I'm glad I know that this is what's best for you when you are struggling. Calming activities are a good way to step back and give yourself a break.That's exactly what I am here for!",
+                "response": "It's good to know that this is what's best for you when you are struggling. Calming activities are a good way to step back and give yourself a break.That's exactly what I am here for!",
                 "nextId": "21"
             },
             "More exciting.": {
