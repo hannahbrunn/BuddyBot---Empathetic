@@ -2,7 +2,7 @@ let currentStepIndex = 0;  // Track which question in the flow we're on
 let currentOptions = {};  // Store current options
 let userName = '';  // Global variable to store user's name
 let conversationData = {}; // Initialize conversationData
-let typingEnabled = false; // Boolean to enable/disable typing animation
+let typingEnabled = true; // Boolean to enable/disable typing animation
 
 // Function to load the conversation flow
 async function loadConversationData() {
@@ -86,7 +86,7 @@ async function saveUserName() {
 
 // Show the current question and its options
 function showQuestionAndOptions() {
-    const currentStep = conversationData[currentStepIndex + 1]; // Adjust index to match CSV IDs
+    const currentStep = conversationData[(currentStepIndex + 1).toString()]; // Ensure correct ID
     const conversation = document.getElementById('conversation');
     const buttons = document.getElementById('buttons');
 
@@ -123,16 +123,23 @@ function respond(userInput) {
         // Show chatbot response
         const responseText = userResponse.response;
         showMessagesSequentially([responseText], () => {
-            // Move to the next question in the flow
-            currentStepIndex = parseInt(userResponse.nextId) - 1; // Update index based on nextId
-            if (currentStepIndex < Object.keys(conversationData).length) {
-                currentOptions = conversationData[(currentStepIndex + 1).toString()].options; // Get new options
-                showQuestionAndOptions();
-            } else {
-                // End the conversation by showing "Thanks for chatting!"
+            if (userResponse.nextId === null) {
+                // End the conversation if nextId is null
                 showMessagesSequentially(["Thanks for chatting!"], () => {
                     buttons.innerHTML = '';  // Clear buttons if needed
                 });
+            } else {
+                // Move to the next question in the flow
+                currentStepIndex = parseInt(userResponse.nextId) - 1;
+                if (currentStepIndex < Object.keys(conversationData).length) {
+                    currentOptions = conversationData[(currentStepIndex + 1).toString()].options; // Get new options
+                    showQuestionAndOptions();
+                } else {
+                    // Fallback to end conversation
+                    showMessagesSequentially(["Thanks for chatting!"], () => {
+                        buttons.innerHTML = '';  // Clear buttons if needed
+                    });
+                }
             }
         });
     } else {
@@ -143,6 +150,7 @@ function respond(userInput) {
     }
 }
 
+
 // Function to show multiple messages in sequence with typing animation
 function showMessagesSequentially(messages, callback) {
     const conversation = document.getElementById('conversation');
@@ -152,27 +160,36 @@ function showMessagesSequentially(messages, callback) {
     function showNextMessage() {
         if (index < messages.length) {
             const messageParts = splitMessage(messages[index]); // Split the message
-            messageParts.forEach(part => {
-                const bubble = document.createElement('div');
-                bubble.classList.add('message', 'chatbot');
-                bubble.innerHTML = `<img src="chatbot-profile.jpg" alt="Chatbot" class="chatbot-img"><div class="bubble"></div>`;
-                conversation.appendChild(bubble);
+            let partIndex = 0; // Track which part of the message we're on
 
-                const bubbleText = bubble.querySelector('.bubble');
+            function showNextPart() {
+                if (partIndex < messageParts.length) {
+                    const bubble = document.createElement('div');
+                    bubble.classList.add('message', 'chatbot');
+                    bubble.innerHTML = `<img src="chatbot-profile.jpg" alt="Chatbot" class="chatbot-img"><div class="bubble"></div>`;
+                    conversation.appendChild(bubble);
 
-                if (typingEnabled) {
-                    // Typing effect if enabled
-                    typeMessage(bubbleText, part, () => {
-                        // No action needed
-                    });
+                    const bubbleText = bubble.querySelector('.bubble');
+
+                    if (typingEnabled) {
+                        // Typing effect if enabled
+                        typeMessage(bubbleText, messageParts[partIndex], () => {
+                            partIndex++;
+                            showNextPart(); // Show the next part after current part finishes typing
+                        });
+                    } else {
+                        // Display message immediately if typing is disabled
+                        bubbleText.innerHTML = messageParts[partIndex];
+                        partIndex++;
+                        showNextPart();
+                    }
                 } else {
-                    // Display message immediately if typing is disabled
-                    bubbleText.innerHTML = part;
+                    index++;
+                    setTimeout(showNextMessage, 500); // Wait before moving to the next message
                 }
-            });
+            }
 
-            index++;
-            setTimeout(showNextMessage, 500);
+            showNextPart();
         } else if (callback) {
             callback();
         }
