@@ -1,0 +1,153 @@
+{
+    "1": {
+        "question": "Nice to meet you {Username}. How was your day?",
+        "options": {
+            "Great": {
+                "response": "Wow, that is wonderful!",
+                "nextId": "2.0"
+            },
+            "Good": {
+                "response": "Wow, that is wonderful!",
+                "nextId": "2.0"
+            },
+            "Okay": {
+                "response": "An okay day is still progress. I hope that you found something good in it!",
+                "nextId": "6.0"
+            },
+            "Not good": {
+                "response": "I\u2019m very sorry to hear that! Off days happen, but I\u2019m here for you if you need anything.",
+                "nextId": "6.0"
+            }
+        }
+    },
+    "2": {
+        "question": "What made today so good?",
+        "options": {
+            "Quality time with others": {
+                "response": "Ahh, that sounds great! I also think my day would be good if I had quality time with others.",
+                "nextId": "3.0"
+            },
+            "Accomplishing a goal": {
+                "response": "Ahh, that sounds great! I also enjoy the satisfaction of accomplishing a goal I've been working at.",
+                "nextId": "5.0"
+            },
+            "Enjoying a favorite activity": {
+                "response": "Ahh, that sounds great. There is nothing better than doing something you love.",
+                "nextId": "4.0"
+            },
+            "Receiving positive news": {
+                "response": "Ahh, that sounds great. I am so happy you got good news today!",
+                "nextId": "5.0"
+            }
+        }
+    },
+    "3": {
+        "question": "So I take it you are more of an extrovert?",
+        "options": {
+            "100% introverted.": {
+                "response": "Wow, I am surprised to learn this about you! ",
+                "nextId": "4.0"
+            },
+            "I can be both.": {
+                "response": "Wow! That is really interesting to know about you.",
+                "nextId": "4.0"
+            },
+            "I am indecisive.": {
+                "response": "Wow! That is really interesting to know about you.",
+                "nextId": "4.0"
+            },
+            "100% extraverted.": {
+                "response": "Ooh, so I was correct in assuming this about you!",
+                "nextId": "4.0"
+            }
+        }
+    },
+    "4": {
+        "question": "What do you like to do in your free time?",
+        "options": {
+            "Sports or outdoor activities.": {
+                "response": "Ooh! That seems like a really nice activity to do in your free time.",
+                "nextId": "nan"
+            },
+            "Entertaining myself such as reading, watching movies/tv or gaming.": {
+                "response": "Ooh! That seems like a really nice activity to do in your free time. There is nothing better then getting all cosy and opening a book, or starting a movie/series.",
+                "nextId": "nan"
+            },
+            "Something creative like drawing or playing music.": {
+                "response": "Ooh! That seems like a really nice activity to do in your free time.",
+                "nextId": "nan"
+            },
+            "Learning new things or skills.": {
+                "response": "Ooh! That seems like a really nice activity to do in your free time.",
+                "nextId": "nan"
+            }
+        }
+    },
+    "5": {
+        "question": "Who is the first person you tell when you accomplish something?",
+        "options": {
+            "My family": {
+                "response": "That makes sense! There is nothing better than celebrating with those you love! I want to get to know you better!",
+                "nextId": "4.0"
+            },
+            "My friends": {
+                "response": "That makes sense! There is nothing better than celebrating with those you love! Let's talk about something else, I want to get to know you better!",
+                "nextId": "4.0"
+            },
+            "I keep it to myself": {
+                "response": "Sometimes it is easier to process things on your own. If you ever feel like sharing, I'm here to listen. Let's talk about something else, I want to get to know you better!",
+                "nextId": "4.0"
+            }
+        }
+    },
+    "6": {
+        "question": "Why do you think today was not good?",
+        "options": {
+            "Unexpected challenges.": {
+                "response": "I am sorry to hear that. It can be hard when things do not go to plan.",
+                "nextId": "7.0"
+            },
+            "Frustrating obstacles.": {
+                "response": "I am sorry to hear that. It can be hard when things do not go to plan.",
+                "nextId": "7.0"
+            },
+            "Felt anxious.": {
+                "response": "I am sorry to hear that. Sometimes doing things that you enjoy can help.",
+                "nextId": "4.0"
+            },
+            "Poor connections": {
+                "response": "I am sorry to hear that. It can be nice to distract yourself from these negative things. ",
+                "nextId": "4.0"
+            },
+            "I do not want to talk about this": {
+                "response": "That is okay! I get it, we should talk about something else. ",
+                "nextId": "4.0"
+            }
+        }
+    },
+    "7": {
+        "question": "What type of challenges or obstacles did you face?",
+        "options": {
+            "Work-related": {
+                "response": "That sounds very frustrating. But that is what I am here for! We should talk about something more positive.",
+                "nextId": "4.0"
+            },
+            "Personal": {
+                "response": "That sounds very frustrating. But that is what I am here for! We should talk about something more positive.",
+                "nextId": "4.0"
+            },
+            "Health-related": {
+                "response": "That sounds very frustrating. But that is what I am here for! We should talk about something more positive.",
+                "nextId": "4.0"
+            },
+            "Social": {
+                "response": "That sounds very frustrating. But that's what I am here for! We should talk about something more positive.",
+                "nextId": "4.0"
+            },
+            "I do not want to talk about this": {
+                "response": "That is okay! I get it, we should talk about something else. ",
+                "nextId": "4.0"
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+Question ID,Question,Option,Response,Next ID
+1,Nice to meet you {Username}. How was your day?,Great,"Wow, that is wonderful!",2
+1,Nice to meet you {Username}. How was your day?,Good,"Wow, that is wonderful!",2
+1,Nice to meet you {Username}. How was your day?,Okay,An okay day is still progress. I hope that you found something good in it!,6
+1,Nice to meet you {Username}. How was your day?,Not good,"I’m very sorry to hear that! Off days happen, but I’m here for you if you need anything.",6
+2,What made today so good?,Quality time with others,"Ahh, that sounds great! I also think my day would be good if I had quality time with others.",3
+2,What made today so good?,Accomplishing a goal,"Ahh, that sounds great! I also enjoy the satisfaction of accomplishing a goal I've been working at.",5
+2,What made today so good?,Enjoying a favorite activity,"Ahh, that sounds great. There is nothing better than doing something you love.",4
+2,What made today so good?,Receiving positive news,"Ahh, that sounds great. I am so happy you got good news today!",5
+3,So I take it you are more of an extrovert?,100% introverted.,"Wow, I am surprised to learn this about you! ",4
+3,So I take it you are more of an extrovert?,I can be both.,Wow! That is really interesting to know about you.,4
+3,So I take it you are more of an extrovert?,I am indecisive.,Wow! That is really interesting to know about you.,4
+3,So I take it you are more of an extrovert?,100% extraverted.,"Ooh, so I was correct in assuming this about you!",4
+4,What do you like to do in your free time?,Sports or outdoor activities.,Ooh! That seems like a really nice activity to do in your free time.,
+4,What do you like to do in your free time?,"Entertaining myself such as reading, watching movies/tv or gaming.","Ooh! That seems like a really nice activity to do in your free time. There is nothing better then getting all cosy and opening a book, or starting a movie/series.",
+4,What do you like to do in your free time?,Something creative like drawing or playing music.,Ooh! That seems like a really nice activity to do in your free time.,
+4,What do you like to do in your free time?,Learning new things or skills.,Ooh! That seems like a really nice activity to do in your free time.,
+5,Who is the first person you tell when you accomplish something?,My family,That makes sense! There is nothing better than celebrating with those you love! I want to get to know you better!,4
+5,Who is the first person you tell when you accomplish something?,My friends,"That makes sense! There is nothing better than celebrating with those you love! Let's talk about something else, I want to get to know you better!",4
+5,Who is the first person you tell when you accomplish something?,I keep it to myself,"Sometimes it is easier to process things on your own. If you ever feel like sharing, I'm here to listen. Let's talk about something else, I want to get to know you better!",4
+6,Why do you think today was not good?,Unexpected challenges.,I am sorry to hear that. It can be hard when things do not go to plan.,7
+6,Why do you think today was not good?,Frustrating obstacles.,I am sorry to hear that. It can be hard when things do not go to plan.,7
+6,Why do you think today was not good?,Felt anxious.,I am sorry to hear that. Sometimes doing things that you enjoy can help.,4
+6,Why do you think today was not good?,Poor connections,I am sorry to hear that. It can be nice to distract yourself from these negative things. ,4
+6,Why do you think today was not good?,I do not want to talk about this,"That is okay! I get it, we should talk about something else. ",4
+7,What type of challenges or obstacles did you face?,Work-related,That sounds very frustrating. But that is what I am here for! We should talk about something more positive.,4
+7,What type of challenges or obstacles did you face?,Personal,That sounds very frustrating. But that is what I am here for! We should talk about something more positive.,4
+7,What type of challenges or obstacles did you face?,Health-related,That sounds very frustrating. But that is what I am here for! We should talk about something more positive.,4
+7,What type of challenges or obstacles did you face?,Social,That sounds very frustrating. But that is what I am here for! We should talk about something more positive.,4
+7,What type of challenges or obstacles did you face?,I do not want to talk about this,"That is okay! I get it, we should talk about something else. ",4
