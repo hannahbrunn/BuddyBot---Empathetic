@@ -249,7 +249,7 @@
         }
     },
     "14": {
-        "question": "{Username], how do you keep in contact with your friends?",
+        "question": "{Username}, how do you keep in contact with your friends?",
         "options": {
             "Texting.": {
                 "response": "Texting can be a great way to keep in touch with friends. This is especially true if you don't live close to each other! Maintaing friendships are so important! They can help us when we are struggling.",
