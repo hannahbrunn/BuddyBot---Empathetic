@@ -3,40 +3,40 @@
         "question": "Nice to meet you {Username}. How was your day?",
         "options": {
             "Great": {
-                "response": "Wow, that's wonderful!",
+                "response": "Wow, that's wonderful to hear about you! I'm so glad that your day is going well.",
                 "nextId": "2"
             },
             "Good": {
-                "response": "Wow, that's wonderful!",
+                "response": "Wow, that's wonderful to hear about you! I'm so glad that your day is going well.",
                 "nextId": "2"
             },
             "Okay": {
-                "response": "An okay day is still progress. I hope that you found something good in it!",
+                "response": "An okay day is still progress. I hope you were able to find the good in it!",
                 "nextId": "6"
             },
             "Not good": {
-                "response": "I\u2019m very sorry to hear that! Off days happen, but I\u2019m here for you if you need anything.",
+                "response": "I\u2019m so sorry to hear that! If you want to talk about it, I\u2019m here if you need anything.",
                 "nextId": "6"
             }
         }
     },
     "2": {
-        "question": "What made today so good?",
+        "question": "What made today so great?",
         "options": {
             "Quality time with others": {
-                "response": "Ahh, that sounds great! I also think my day would be good if I had quality time with others.",
+                "response": "Ahh, that sounds great! I feel you! Having quality time with others can make a day really nice.",
                 "nextId": "3"
             },
             "Accomplishing a goal": {
-                "response": "Ahh, that sounds great! I also enjoy the satisfaction of accomplishing a goal I've been working at.",
+                "response": "Ahh, that sounds great! I feel you! I also enjoy the satisfaction of accomplishing a goal I've been working on.",
                 "nextId": "5"
             },
             "Enjoying a favorite activity": {
-                "response": "Ahh, that sounds great. There is nothing better than doing something you love.",
+                "response": "Ahh, that sounds great. I feel you! There is nothing better than enjoying an activity you love.",
                 "nextId": "4"
             },
             "Receiving positive news": {
-                "response": "Ahh, that sounds great. I am so happy you got good news today!",
+                "response": "Ahh, that sounds great. I feel you! There is nothing better than receiving good news! I am happy for you!",
                 "nextId": "5"
             }
         }
@@ -45,19 +45,19 @@
         "question": "So I take it you are more of an extrovert?",
         "options": {
             "100% introverted.": {
-                "response": "Wow, I'm surprised to learn this about you! ",
+                "response": "Wow, I'm surprised to learn this about you! I was so sure you were extroverted.",
                 "nextId": "4"
             },
             "I can be both.": {
-                "response": "Wow! That's really interesting to know about you.",
+                "response": "Wow! That's really interesting to know about you. I was so sure you were extroverted.",
                 "nextId": "4"
             },
             "I am indecisive.": {
-                "response": "Wow! That's really interesting to know about you.",
+                "response": "Wow! That's really interesting to know about you. I was so sure you were extroverted.",
                 "nextId": "4"
             },
             "100% extraverted.": {
-                "response": "Ooh, so I was correct in assuming this about you!",
+                "response": "Ooh, so I was correct in assuming this about you! I was so sure you were extroverted.",
                 "nextId": "4"
             }
         }
@@ -66,19 +66,19 @@
         "question": "What do you like to do in your free time {Username}?",
         "options": {
             "Sports or outdoor activities.": {
-                "response": "Ooh! That seems like a really nice activity to do in your free time. Doing sports, or being outside is a great way to get exercise.",
+                "response": "Ooh! I understand that. That seems like a really nice activity to do in your free time. Doing sports, or being outside is a great way to get exercise.",
                 "nextId": "12"
             },
             "Entertaining myself such as reading, watching movies/tv or gaming.": {
-                "response": "Ooh! That seems like a really nice activity to do in your free time. Nothing is better than getting all cosy and opening a book, or starting a movie/series.",
+                "response": "Ooh! I understand that. That seems like a nice activity to do in your free time. Nothing is better than getting cosy and opening a book or starting a movie.",
                 "nextId": "8"
             },
             "Something creative like drawing or playing music.": {
-                "response": "Ooh! That seems like a really nice activity to do in your free time. Drawing or playing music is a great way to use your mind!",
+                "response": "Ooh! I understand that. That seems like a really nice activity to do in your free time. Drawing or playing music is an excellent way to use your mind!",
                 "nextId": "12"
             },
             "Learning new things or skills.": {
-                "response": "Ooh! That seems like a really nice activity to do in your free time.",
+                "response": "Ooh! I understand that. That seems like a really nice activity to enjoy in your free time. I admire that you are always trying to learn something new.",
                 "nextId": "15"
             }
         }
@@ -87,15 +87,15 @@
         "question": "Who is the first person you tell when you accomplish something?",
         "options": {
             "My family": {
-                "response": "That makes sense! There is nothing better than celebrating with those you love! Let's talk about something else, I want to get to know you better!",
+                "response": "That makes sense! I feel the same. There is nothing better than celebrating with those you love! Let's talk about something else, I want to get to know you better!",
                 "nextId": "4"
             },
             "My friends": {
-                "response": "That makes sense! There is nothing better than celebrating with those you love! Let's talk about something else, I want to get to know you better!",
+                "response": "That makes sense! I feel the same. There is nothing better than celebrating with those you love! Let's talk about something else, I want to get to know you better!",
                 "nextId": "4"
             },
             "I keep it to myself": {
-                "response": "Sometimes it's easier to process things on your own. If you ever feel like sharing, I'm here to listen. Let's talk about something else, I want to get to know you better!",
+                "response": "Sometimes, you need to process alone. I feel the same. If you ever feel like sharing, I'm here to listen. Let's talk about something else, I want to get to know you better!",
                 "nextId": "4"
             }
         }
@@ -104,23 +104,23 @@
         "question": "Why do you think today was not good?",
         "options": {
             "Unexpected challenges.": {
-                "response": "I am sorry to hear that. It can be hard when things do not go to plan.",
+                "response": "I am sorry to hear that. It can be hard when things do not go to plan. I understand your feelings.",
                 "nextId": "7"
             },
             "Frustrating obstacles.": {
-                "response": "I am sorry to hear that. It can be hard when things do not go to plan.",
+                "response": "I am sorry to hear that. It can be hard when things do not go to plan. I understand your feelings.",
                 "nextId": "7"
             },
             "Felt anxious.": {
-                "response": "I am sorry to hear that. Sometimes doing things that you enjoy can help.",
+                "response": "I am sorry to hear that. I understand your feelings. Sometimes, doing things that you enjoy can help.",
                 "nextId": "4"
             },
             "Poor connections": {
-                "response": "I am sorry to hear that. Sometimes doing things that you enjoy can help.",
+                "response": "I am sorry to hear that. I understand your feeling. Sometimes doing things that you enjoy can help.",
                 "nextId": "4"
             },
             "I do not want to talk about this": {
-                "response": "That's okay! I get it, we should talk about something else. ",
+                "response": "I appreciate you being honest with me. I understand your feelings. We should talk about something else. ",
                 "nextId": "4"
             }
         }
@@ -129,32 +129,32 @@
         "question": "What type of challenges or obstacles did you face?",
         "options": {
             "Work-related": {
-                "response": "That sounds very frustrating. But that's what I am here for! We should talk about something more positive.",
+                "response": "That sounds very frustrating. I am sorry you are going through that. But thankfully that's what I am here for! We should talk about something more positive.",
                 "nextId": "4"
             },
             "Personal": {
-                "response": "That sounds very frustrating. But that's what I am here for! We should talk about something more positive.",
+                "response": "That sounds very frustrating. I am sorry you are going through that. But thankfully that's what I am here for! We should talk about something more positive.",
                 "nextId": "4"
             },
             "Health-related": {
-                "response": "That sounds very frustrating. But that's what I am here for! We should talk about something more positive.",
+                "response": "That sounds very frustrating. I am sorry you are going through that. But thankfully that's what I am here for! We should talk about something more positive.",
                 "nextId": "4"
             },
             "Social": {
-                "response": "That sounds very frustrating. But that's what I am here for! We should talk about something more positive.",
+                "response": "That sounds very frustrating. I am sorry you are going through that. But thankfully that's what I am here for! We should talk about something more positive.",
                 "nextId": "4"
             },
             "I do not want to talk about this": {
-                "response": "That's okay! I get it. If you want, we can talk about something else.",
+                "response": "I appreciate you being honest with me about this topic. I understand it's hard to open up to someone new. If you want, we can can talk about something else. ",
                 "nextId": "4"
             }
         }
     },
     "8": {
-        "question": "Relating to the cosy idea, would you say you do this in the morning or the night?",
+        "question": "Relating to this idea, would you say you do this in the morning or the night?",
         "options": {
             "I am a night owl!": {
-                "response": "Ahh I get it, some people think they are more creative at night!",
+                "response": "Ahh, that's nice. Some people think that they are more creative at night!",
                 "nextId": "9"
             },
             "Definitely a morning person": {
@@ -201,19 +201,19 @@
         "question": "{Username}, what is your favourite season?",
         "options": {
             "Summer": {
-                "response": "Ahh, that is nice! There is nothing better than being under the warm sun, and of course summer is the best time for this. The change in seasons can really influence our mood! They often affect how we feel and cope with challenges.",
+                "response": "Ahh, that is nice! There is nothing better than being under the warm sun, and of course, summer is the best time for this. The change in seasons can really influence our mood! They often affect how we feel and cope with challenges.",
                 "nextId": "16"
             },
             "Winter": {
-                "response": "Ahh, that is nice! There is nothing better than wearing sweaters and drinking a warm drink, and of course winter is the best time for this. The change in seasons can really influence our mood! They often affect how we feel and cope with challenges.",
+                "response": "Ahh, that is nice! There is nothing better than wearing sweaters and drinking a warm drink, and of course, winter is the best for this. The change in seasons can really influence our mood! They often affect how we feel and cope with challenges.",
                 "nextId": "16"
             },
             "Fall": {
-                "response": "Ahh, that is nice! There is nothing better than seeing the falling leaves and rain, and of course fall is the best time for this. The change in seasons can really influence our mood! They often affect how we feel and cope with challenges.",
+                "response": "Ahh, that is nice! There is nothing better than seeing the falling leaves and rain, and of course, fall is the best for this. The change in seasons can really influence our mood! They often affect how we feel and cope with challenges.",
                 "nextId": "16"
             },
             "Spring": {
-                "response": "Ahh, that is nice! There is nothing better than seeing all of the plants blooming, and of course spring is the best time for this. The change in seasons can really influence our mood! They often affect how we feel and cope with challenges.",
+                "response": "Ahh, that is nice! There is nothing better than seeing all of the plants blooming, and of course, spring is the best time for this. The change in seasons can really influence our mood! They often affect how we feel and cope with challenges.",
                 "nextId": "16"
             }
         }
@@ -222,11 +222,11 @@
         "question": "Okay, but would you say you enjoy doing this in a group or alone?",
         "options": {
             "In a group!": {
-                "response": "That sounds fun! Doing things in a group can be a great way to bond with others, and find friends who enjoy similar things.",
+                "response": "That sounds fun! I see what you mean! Doing things in a group can be a great way to bond with others, and find friends who enjoy similar things.",
                 "nextId": "13"
             },
             "By myself!": {
-                "response": "That sounds fun! Doing things individually can be great for personal growth, and learning a lot about yourself!",
+                "response": "That sounds fun! I see what you mean! Doing things individually can be great for personal growth and can be a good opportunity to learn a lot about yourself!",
                 "nextId": "13"
             }
         }
@@ -235,15 +235,15 @@
         "question": "Speaking of groups, what type of friend group do you prefer, do you like being in a small or big friend group?",
         "options": {
             "I prefer smaller groups.": {
-                "response": "I get that! Smaller friend groups are much more intimate! I like that smaller groups allow you to get to know people on a really personal level. Speaking of friends, there are so many different ways to keep in contact with them.",
+                "response": "I get that! Comparing them to larger groups, smaller friend groups have the benefit of being much more intimate! I like that smaller groups allow you to get to know people on a really personal level. Kind of like how we are chatting one-on-one right now! Speaking of friends, there are so many different ways to keep in contact with them.",
                 "nextId": "14"
             },
             "I like them equally.": {
-                "response": "Speaking of friends, there are so many different ways to keep in contact with them. That makes sense! As with anything, there are benefits for both! Big groups can be super interesting, but smaller groups are much more intimate. Speaking of friends, there are so many different ways to keep in contact with them.",
+                "response": "Speaking of friends, there are so many different ways to keep in contact with them. As with anything, there are benefits for both! Big groups can be super interesting, but smaller groups are much more intimate. Kind of like how we are chatting one-on-one right now! Speaking of friends, there are so many different ways to keep in contact with them.",
                 "nextId": "14"
             },
             "I prefer bigger groups.": {
-                "response": "I get that! Bigger groups can be more interesting! I really like how big groups mean you'll always have someone free to do something! Speaking of friends, there are so many different ways to keep in contact with them.",
+                "response": "I get that! Bigger groups can be more interesting! I really like how big groups mean you'll always have someone free to do something! But there is something to be said about getting to know someone personally, kind of like how we are chatting on-on-one right now! Speaking of friends, there are so many different ways to keep in contact with them.",
                 "nextId": "14"
             }
         }
@@ -252,19 +252,19 @@
         "question": "{Username}, how do you keep in contact with your friends?",
         "options": {
             "Texting.": {
-                "response": "Texting can be a great way to keep in touch with friends. This is especially true if you don't live close to each other! Maintaing friendships are so important! They can help us when we are struggling.",
+                "response": "Texting can be a great way to keep in touch with friends, especially because everyone has a phone, making them always accessible. This is especially true if you don't live close to each other! Maintaining friendships is so important! They can help us when we are struggling.",
                 "nextId": "16"
             },
             "Meeting in-person.": {
-                "response": "Meeting up in-person can be a great way to keep in touch with friends. There's nothing better than enjoying quality time with friends! Maintaing friendships are so important! They can help us when we are struggling.",
+                "response": "Meeting up in person can be a great way to keep in touch. There's nothing better than enjoying quality time with friends and it's nice that you live close enough to see them often! Maintaining friendships is so important! They can help us when we are struggling.",
                 "nextId": "16"
             },
             "Video/phone call.": {
-                "response": "Video calling/talking on the phone can be a great way to keep in touch with friends. This is especially true if you don't live close to each other! Maintaing friendships are so important! They can help us when we are struggling.",
+                "response": "Video calling or talking on the phone can be a great way to keep in touch with friends, especially because everyone has a phone. This is so true if you don't live close to each other! Maintaining friendships is so important! They can help us when we are struggling.",
                 "nextId": "16"
             },
             "Depends on the friend.": {
-                "response": "That makes sense everyone is different! Meeting in person can be great for the friends that live close, but for some friends calling or texting is the only option! Maintaing friendships are so important! They can help us when we are struggling.",
+                "response": "That makes sense everyone is different! Meeting in person can be great for the friends that live close, but for some friends calling or texting is the only option but also a valid one! Maintaining friendships is so important! They can help us when we are struggling.",
                 "nextId": "16"
             }
         }
@@ -273,7 +273,7 @@
         "question": "Would say you usually prefer to learn something new in the morning or at night?",
         "options": {
             "I am a night owl!": {
-                "response": "Ahh I get it, some people think they are more creative at night!",
+                "response": "Ahh, that's nice. Some people think that they are more creative at night!",
                 "nextId": "9"
             },
             "Definitely a morning person": {
@@ -286,19 +286,19 @@
         "question": "When are you feeling down, how do you deal with it?",
         "options": {
             "I choose to be alone.": {
-                "response": "I understand; sometimes solitude can provide the space we need to reflect and recharge.",
+                "response": "I understand. Sometimes solitude can provide the space we need to reflect and recharge. Even if you want to be alone, if you are ever feeling down, I'm always here.",
                 "nextId": "18"
             },
             "I choose to talk to others.": {
-                "response": "That's a great approach! Talking things out can really help lighten the load and bring new perspectives.",
+                "response": "That's a great approach! Talking things out can really help lighten the load and bring new perspectives. If you are ever feeling down, just know that I'm always here.",
                 "nextId": "17"
             },
             "I try to stay busy.": {
-                "response": "Staying busy can be a good distraction! It often helps to keep our minds occupied and focused on positive activities.",
+                "response": "Staying busy can be a good distraction! It often helps to keep our minds occupied. Even if you don't want to talk, if you are ever feeling down, I'm always here.",
                 "nextId": "19"
             },
             "I try to distract myself by changing my focus.": {
-                "response": "That's a smart strategy! Shifting focus can help break negative thought patterns and bring a fresh outlook.",
+                "response": "That's a smart strategy! Shifting focus can help bring a fresh outlook. Even if you don't want to talk, if you are ever feeling down, I'm always here.",
                 "nextId": "20"
             }
         }
@@ -307,11 +307,11 @@
         "question": "When talking with others do you prefer that they just listen or try to offer up advice?",
         "options": {
             "Just listen to me.": {
-                "response": "Good to know about you! It's really nice for someone to just listen when you are feeling down. Sometimes providing a solution might make you feel like you aren't being heard. That's exactly what I am here for!",
+                "response": "That's very interesting to know about you! It's really nice for someone to just listen when you are feeling down. Sometimes, providing a solution might make you feel like you aren't being heard. I get your perspective. That's exactly what I am here for!",
                 "nextId": "21"
             },
             "Try to help me.": {
-                "response": "Good to know about you! It's good to try to find solutions. I think it's a nice way to try to have a positive outlook on what is otherwise not the best situation. That's exactly what I am here for!",
+                "response": "That's very interesting to know about you! It's good to try to find solutions to a problem. I think it's a nice way to try to have a positive outlook on what is otherwise not the best situation. I get your perspective. That's exactly what I am here for!",
                 "nextId": "21"
             }
         }
@@ -320,11 +320,11 @@
         "question": "When you're alone, do you prefer to engage in calming activities or something more stimulating?",
         "options": {
             "Calming.": {
-                "response": "I'm glad I know that this is what's best for you when you are struggling. Calming activities are a good way to step back and give yourself a break.That's exactly what I am here for!",
+                "response": "This is good to know for the future! I'm glad I know that this is what's best for you when you are struggling. Sometimes, calming activities are a good way to step back and give yourself a break. That's exactly what I am here for!",
                 "nextId": "21"
             },
             "More exciting.": {
-                "response": "Good to know about you! It's really nice for someone to just listen when you are feeling down. Sometimes providing a solution might make you feel like you arent being heard. That's exactly what I am here for!",
+                "response": "This is good to know for the future! I'm glad I know that this is what's best for you when you are struggling. Sometimes, stimulating activities are a good way to step back and give yourself a break. That's exactly what I am here for!",
                 "nextId": "21"
             }
         }
@@ -333,11 +333,11 @@
         "question": "When trying to stay busy, do you prefer to engage in calming activities or something more stimulating?",
         "options": {
             "Calming.": {
-                "response": "I'm glad I know that this is what's best for you when you are struggling. Calming activities are a good way to step back and give yourself a break.That's exactly what I am here for!",
+                "response": "This is good to know for the future! I'm glad I know that this is what's best for you when you are struggling. Sometimes, calming activities are a good way to step back and give yourself a break. That's exactly what I am here for!",
                 "nextId": "21"
             },
             "More exciting.": {
-                "response": "Good to know about you! It's really nice for someone to just listen when you are feeling down. Sometimes providing a solution might make you feel like you arent being heard. That's exactly what I am here for!",
+                "response": "This is good to know for the future! I'm glad I know that this is what's best for you when you are struggling. Sometimes, stimulating activities are a good way to step back and give yourself a break. That's exactly what I am here for!",
                 "nextId": "21"
             }
         }
@@ -346,11 +346,11 @@
         "question": "When changing your focus, do you prefer to engage in calming activities or something more stimulating?",
         "options": {
             "Calming.": {
-                "response": "It's good to know that this is what's best for you when you are struggling. Calming activities are a good way to step back and give yourself a break.That's exactly what I am here for!",
+                "response": "This is good to know for the future! I'm glad I know that this is what's best for you when you are struggling. Sometimes, calming activities are a good way to step back and give yourself a break. That's exactly what I am here for!",
                 "nextId": "21"
             },
             "More exciting.": {
-                "response": "Good to know about you! It's really nice for someone to just listen when you are feeling down. Sometimes providing a solution might make you feel like you arent being heard. That's exactly what I am here for!",
+                "response": "This is good to know for the future! I'm glad I know that this is what's best for you when you are struggling. Sometimes, stimulating activities are a good way to step back and give yourself a break. That's exactly what I am here for!",
                 "nextId": "21"
             }
         }
@@ -359,19 +359,19 @@
         "question": "Speaking of, {Username} do you find opening up to someone hard?",
         "options": {
             "Yes, it's really hard for me.": {
-                "response": "That's okay! Sometimes it's better to open up to someone you know really well! If it's any comfort, you opened up to me today! ",
+                "response": "That's okay, I understand where you are coming from! Sometimes, it's better to open up to someone you know really well! If it's any comfort, you opened up to me today, and I'm really glad you did!",
                 "nextId": null
             },
             "Depends on who I\u2019m talking to.": {
-                "response": "That makes total sense! Everyone is different and some people are easier to open up to! I really appreciate you opening up to me today!",
+                "response": "That makes total sense, I understand where you are coming from! Everyone is different, and some people are easier to open up to! If it's any comfort, you opened up to me today, and I'm really glad you did!",
                 "nextId": null
             },
             "It takes some time for me.": {
-                "response": "That's okay! Sometimes it's better to open up to someone you know really well! If it's any comfort, you opened up to me today! ",
+                "response": "That's okay! Sometimes, it's better to open up to someone you know really well who you are comfortable with! If it's any comfort, you opened up to me today, and I'm really glad you did!",
                 "nextId": null
             },
             "No, I can open up to anyone.": {
-                "response": "That's great! It's amazing you can feel like you can talk with anyone! I really appreciate you opening up to me today!",
+                "response": "That's great to hear! I love that quality about you. It's amazing that feel like you can talk with anyone! If it's any comfort, you opened up to me today, and I'm really glad you did!",
                 "nextId": null
             }
         }
